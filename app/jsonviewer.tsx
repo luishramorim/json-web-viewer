@@ -7,6 +7,8 @@ export default function JsonViewer() {
   const params = useLocalSearchParams();
   const [jsonContent, setJsonContent] = useState<any>(null);
 
+  const filename = params.filename as string || 'JSON Viewer';
+
   useEffect(() => {
     if (params.data) {
       try {
@@ -34,7 +36,7 @@ export default function JsonViewer() {
 
   return (
     <View style={styles.container}>
-      <MenuBar />
+      <MenuBar title={filename} />
       {jsonContent ? (
         <Text style={styles.jsonText}>
           {renderJsonAsText(jsonContent)}
